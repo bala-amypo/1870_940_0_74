@@ -6,7 +6,7 @@ public class Student {
     private String name;
     private String email;
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
     public void setId(Long id) {
