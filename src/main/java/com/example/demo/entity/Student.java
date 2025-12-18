@@ -1,35 +1,35 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-
+import jakarta.Validation.constraints.NotBlank;
+import jakarta.Validation.constraints.Email;
+import jakarta.Validation.constraints.Size;
+import jakarta.persistence.olumn;
 @Entity
-@Table(name = "student")
+//@Table(name = "students")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")  // Explicitly map; adjust nullable/length as needed
+    @NotBlank(message="Name field connot be empty")
+    @Size(min=3,max=20,message="The user must be min of 3 and max of 20 characters")
     private String name;
-
-    @Column(name = "email")
+    @Email(message="Invalid email id")
+    @column(unique=true)
     private String email;
 
-    // Constructors
+    
+
     public Student() {
     }
 
-    public Student(String name, String email) {
+    public Student(Long  id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    // If you plan to add dob and cgpa later:
-    // private LocalDate dob;
-    // private Float cgpa;
-
-    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -39,7 +39,7 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+            return name;
     }
 
     public void setName(String name) {
